@@ -16,15 +16,22 @@
 	min-width: 320px;
 }
 
-@media (prefers-color-scheme: light) {
-	.searchForm {
-		background-color: grey;
-		color: #213547;
+	.searchFormButton {
+		font-size: 16px;
+		text-align: center;
+		padding: 8px;
+		border-radius: 8px;
+		color: #ececec;
+		border: 1px solid #ececec;
+		background-color: transparent;
+		transition: border-color 0.3s;
+		background-color: #14abf1;
 	}
-	.searchForm button {
-		background-color: #e9ec5a;
+	.searchFormButton:hover {
+		border: 1px solid #61d6fb;
+		background-color: #1039f0;
 	}
-	.searchForm button:hover {
-		background-color: #80f010;
+	.searchInput:hover {
+		border: 2px solid #61d6fb;
+		
 	}
-}

@@ -1,8 +1,14 @@
 import css from './ImageCard.module.css';
+import { PhotoUrls } from '../App/App.types';
 
-const ImageCard = ({ alt_description, urls, updateModalStateData }) => {
+type Props ={
+    urls: PhotoUrls;
+    alt_description: string;
+    updateModalStateData: (url: string, alt_description: string) => void;}
+
+const ImageCard: React.FC<Props> = ({ alt_description, urls, updateModalStateData }) => {
     return (
-        <div className={css.cardWrapper}>
+        <div>
             <img
                 className={css.ImageCard}
                 src={urls.small}

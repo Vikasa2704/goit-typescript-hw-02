@@ -1,7 +1,14 @@
 import ImageCard from '../ImageCard/ImageCard';
+import { Photo } from '../App/App.types';
 import css from './ImageGallery.module.css';
 
-const ImageGallery = ({ gallery, openModal, updateModalStateData }) => {
+
+type Props = {
+	gallery: Photo[];
+	openModal: () => void;
+	updateModalStateData: (url: string, alt_description: string) => void;}
+
+const ImageGallery: React.FC<Props> = ({ gallery, openModal, updateModalStateData }) => {
 	return (
 		<ul className={css.itemsContainer}>
 			{gallery.map(({ id, alt_description, urls }) => (

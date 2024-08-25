@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import fetchData from "../../api/photos-api";
 import { Toaster } from 'react-hot-toast';
+import { Photo, FetchGalleryPhotosResponse } from './App.types';
 
 
 import SearchBar from '../SearchBar/SearchBar';
@@ -12,19 +13,19 @@ import ImageModal from '../ImageModal/ImageModal';
 
 
 const App = () => {
-  const [queryValue, setQueryValue] = useState('');
-  const [page, setPage] = useState(1);
-  const [isError, setIsError] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [gallery, setGallery] = useState([]);
-  const [totalPages, setTotalPages] = useState(0);
+  const [queryValue, setQueryValue] = useState<string>('');
+  const [page, setPage] = useState<number>(1);
+  const [isError, setIsError] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [gallery, setGallery] = useState<Photo[]>([]);
+  const [totalPages, setTotalPages] = useState<number>(0);
   
-  const [modalIsOpen, setIsOpen] = useState(false);
-	const [modalImage, setModalImage] = useState('');
-	const [altDescription, setAltDescription] = useState('');
+  const [modalIsOpen, setIsOpen] = useState<boolean>(false);
+	const [modalImage, setModalImage] = useState<string>('');
+	const [altDescription, setAltDescription] = useState<string>('');
   
 
-  const ref = useRef();
+  const ref = useRef<HTMLDivElement>(null);
 
 useEffect(()=>{
   if (queryValue ==='') {
@@ -36,7 +37,7 @@ setIsLoading(true);
 setIsError(false);
 
 try {
-const data = await fetchData(queryValue, page);
+const data : FetchGalleryPhotosResponse = await fetchData(queryValue, page);
 if (data.total === 0) return;
     setGallery((prev)=> {
       return [...prev,...data.results];
@@ -54,10 +55,10 @@ handleSearch();
 useEffect(() => {
   if (page === 1) return;
 
-  ref.current.scrollIntoView({ behavior: 'smooth', block: 'end' });
+  ref.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
 }, [page, gallery]);
 
-const handleQuery = (newQuery) => {
+const handleQuery = (newQuery: string) => {
   setQueryValue(newQuery);
   setGallery([]);
   setPage(1);
@@ -76,7 +77,7 @@ const closeModal = () => {
   setIsOpen(false);
 };
 
-const updateModalStateData = (src, alt) => {
+const updateModalStateData = (src : string, alt : string) => {
   setModalImage(src);
   setAltDescription(alt);
 };
@@ -110,4 +111,4 @@ return (
 );
 };
 
-export default App
+export default App;

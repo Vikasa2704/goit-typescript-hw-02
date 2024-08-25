@@ -2,9 +2,16 @@ import { Formik, Form, Field } from 'formik';
 import toast from 'react-hot-toast';
 import css from './SearchBar.module.css';
 
-const initialValues = { query: '' };
+interface FormValues{
+  query: string;
+}
+interface Props {
+  onSubmit: (value: string) => void;
+}
 
-const SearchBar = ({ onSubmit }) => {
+const initialValues:FormValues = { query: '' };
+
+const SearchBar: React.FC<Props> = ({ onSubmit }) => {
   return (
     <Formik
       initialValues={initialValues}
@@ -26,7 +33,7 @@ const SearchBar = ({ onSubmit }) => {
           autoFocus
           placeholder="Search images and photos"
         />
-        <button type="submit" className={css.searchButton}>Search</button>
+        <button type="submit" className={css.searchFormButton}>Search</button>
       </Form>
     </Formik>
   );
