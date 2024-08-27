@@ -2,10 +2,11 @@
 	display: flex;
 	justify-content: center;
 	background-color: #213547;
+	box-shadow: 4px 4px 8px #00cbff7f;
 	border-radius: 8px;
-	padding: 12px;
-	margin-bottom: 20px;
-}
+	margin-bottom: 40px;
+	padding: 20px;
+    }
 
 .searchInput {
 	border-radius: 8px;
